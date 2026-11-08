@@ -1,0 +1,625 @@
+
+/* =================================
+   OMNICORE - DARK LUXURY DASHBOARD
+================================= */
+
+.dashbord-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 35px;
+  box-sizing: border-box;
+  background: #090d14;
+  color: #f5f1e8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.dashboard-header h1 {
+  color: #e0bd63;
+  font-size: 29px;
+  margin: 0 0 8px;
+}
+
+.dashboard-header p {
+  color: #a5adba;
+  font-size: 14px;
+  margin: 0;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notification-button {
+  width: 43px;
+  height: 43px;
+  border: 1px solid rgba(215, 180, 106, 0.25);
+  border-radius: 10px;
+  background: #171f2c;
+  color: #e0bd63;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.ceo-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(215, 180, 106, 0.15);
+  border: 1px solid rgba(215, 180, 106, 0.3);
+  color: #e0bd63;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ceo-profile strong {
+  color: #f5f1e8;
+  font-size: 13px;
+}
+
+.ceo-profile p {
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+/* SECTION HEADINGS */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2,
+.content-card h2 {
+  color: #e0bd63;
+  font-size: 19px;
+  margin: 0;
+}
+
+.section-heading span {
+  color: #c9a64c;
+  font-size: 12px;
+}
+
+/* STATISTICS */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  position: relative;
+  padding: 23px;
+  background: linear-gradient(145deg, #171f2c, #101722);
+  border: 1px solid rgba(210, 173, 99, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(220, 182, 105, 0.5);
+}
+
+.stat-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #a5adba;
+  font-size: 13px;
+}
+
+.stat-icon {
+  font-size: 22px;
+  filter: saturate(0.7);
+}
+
+.stat-card h2 {
+  color: #e1bf72;
+  font-size: 29px;
+  margin: 18px 0 8px;
+}
+
+.stat-card p {
+  color: #929eae;
+  font-size: 12px;
+  margin: 0;
+}
+
+/* MIDDLE SECTION */
+
+.middle-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px;
+  margin-bottom: 25px;
+}
+
+.content-card {
+  min-width: 0;
+  padding: 25px;
+  margin-bottom: 25px;
+  background: linear-gradient(145deg, #171f2c, #101722);
+  border: 1px solid rgba(210, 173, 99, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.muted {
+  color: #929eae;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.growth-number {
+  color: #e1bf72;
+  font-size: 38px;
+  font-weight: 800;
+  margin-top: 25px;
+}
+
+.positive {
+  color: #65c995;
+  font-size: 13px;
+}
+
+/* GROWTH BARS */
+
+.growth-bars {
+  height: 145px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 25px;
+  padding-top: 10px;
+}
+
+.bar-column {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.bar {
+  width: 100%;
+  max-width: 30px;
+  min-height: 5px;
+  background: linear-gradient(180deg, #e4c77e, #9b742d);
+  border-radius: 5px 5px 0 0;
+}
+
+.bar-column small {
+  color: #929eae;
+  font-size: 10px;
+}
+
+/* FINANCIAL SUMMARY */
+
+.finance-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid #ffffff12;
+  color: #a5adba;
+  font-size: 13px;
+}
+
+.finance-item strong {
+  color: #f5f1e8;
+}
+
+.profit-progress,
+.project-progress {
+  height: 8px;
+  overflow: hidden;
+  background: #293344;
+  border-radius: 20px;
+}
+
+.profit-progress {
+  margin-top: 20px;
+}
+
+.profit-progress div,
+.project-progress div {
+  height: 100%;
+  background: linear-gradient(90deg, #b88a36, #e4c77e);
+  border-radius: 20px;
+}
+
+.profit-progress div {
+  width: 71.8%;
+}
+
+/* DEPARTMENTS */
+
+.department-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 45px;
+  align-items: center;
+  gap: 18px;
+  padding: 17px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.department-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.department-info strong {
+  color: #f5f1e8;
+  font-size: 13px;
+}
+
+.department-info span {
+  color: #929eae;
+  font-size: 11px;
+}
+
+.performance-track {
+  height: 8px;
+  overflow: hidden;
+  background: #293344;
+  border-radius: 20px;
+}
+
+.performance-track div {
+  height: 100%;
+  background: linear-gradient(90deg, #b88a36, #e4c77e);
+  border-radius: 20px;
+}
+
+.department-row > strong {
+  color: #e1bf72;
+  font-size: 13px;
+}
+
+/* PROJECT TABLE */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table-wrapper thead {
+  background: #202a39;
+}
+
+.table-wrapper th {
+  padding: 15px;
+  color: #e0bd63;
+  font-size: 11px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.table-wrapper td {
+  padding: 16px 15px;
+  color: #c5ccd6;
+  font-size: 13px;
+  border-bottom: 1px solid #293344;
+  white-space: nowrap;
+}
+
+.table-wrapper tbody tr:hover {
+  background: #202a39;
+}
+
+.project-progress {
+  display: inline-block;
+  width: 90px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* PROJECT STATUS */
+
+.status {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status.in-progress {
+  background: rgba(201, 166, 76, 0.15);
+  color: #e0bd63;
+}
+
+.status.delayed {
+  background: #48252b;
+  color: #ff8585;
+}
+
+.status.completed {
+  background: #153b2b;
+  color: #65d69a;
+}
+
+/* BOTTOM SECTION */
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.activity-item p {
+  color: #c5ccd6;
+  font-size: 13px;
+  margin: 0;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #d5b46d;
+  box-shadow: 0 0 10px rgba(213, 180, 109, 0.3);
+}
+
+.deadline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid #ffffff12;
+}
+
+.deadline-item strong {
+  color: #f5f1e8;
+  font-size: 13px;
+}
+
+.deadline-item p {
+  color: #929eae;
+  font-size: 11px;
+  margin: 6px 0 0;
+}
+
+.deadline-item > span {
+  color: #e0bd63;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* FOOTER */
+
+.dashboard-footer {
+  margin-top: 25px;
+  padding: 23px 10px;
+  text-align: center;
+  color: #687586;
+  font-size: 12px;
+  border-top: 1px solid #ffffff12;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .middle-grid,
+  .bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .dashbord-container {
+    padding: 65px 16px 20px;
+  }
+
+  .dashboard-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .department-row {
+    grid-template-columns: 1fr 45px;
+    gap: 10px;
+  }
+
+  .department-info {
+    grid-column: 1 / -1;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .content-card {
+    padding: 18px;
+  }
+
+  .growth-bars {
+    gap: 5px;
+  }
+}
+/* Luxury Typography */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+.dashbord-container {
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+/* Main title */
+.dashbord-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 38px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e8bd68;
+  margin-bottom: 10px;
+}
+
+/* Section titles */
+.dashbord-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: 600;
+  color: #e8bd68;
+  letter-spacing: 0.3px;
+}
+
+.dashbord-container h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #f1d49a;
+}
+
+/* Statistics numbers */
+.dashbord-container .stat-card h2,
+.dashbord-container .stat-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #e8bd68;
+}
+
+/* Descriptions */
+.dashbord-container p {
+  font-family: 'DM Sans', sans-serif;
+  color: #aebbd0;
+  line-height: 1.7;
+}
+
+/* Small labels */
+.dashbord-container span {
+  letter-spacing: 0.3px;
+}
+
+/* Elegant gold details */
+.dashbord-container h1,
+.dashbord-container h2 {
+  text-shadow: 0 2px 15px rgba(220, 170, 75, 0.10);
+}.dashboard-welcome {
+  position: relative;
+  padding: 27px 32px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(214, 174, 99, 0.3);
+  border-radius: 16px;
+  background: linear-gradient(120deg, #172438, #101722, #0d131d);
+  overflow: hidden;
+}
+
+.dashboard-welcome::after {
+  content: "";
+  position: absolute;
+  right: -45px;
+  top: -85px;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(214, 174, 99, 0.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 25px rgba(214,174,99,0.025),
+              0 0 0 50px rgba(214,174,99,0.02);
+}
+
+.welcome-top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #c9a45e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.welcome-line {
+  width: 55px;
+  height: 1px;
+  background: #a8894e;
+}
+
+.dashboard-welcome h1 {
+  font-family: 'Playfair Display', serif;
+  color: #e8c477;
+  font-size: 38px;
+  margin: 17px 0 7px;
+  font-weight: 600;
+}
+
+.dashboard-welcome p {
+  color: #b7c2d3;
+  font-size: 14px;
+  margin: 0;
+}
+
+.welcome-bottom {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  color: #b99b62;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
