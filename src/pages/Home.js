@@ -1,4 +1,6 @@
+
 import React from "react";
+import { Link } from "react-router-dom";
 import "../design/Home.css";
 
 function Home() {
@@ -52,9 +54,9 @@ function Home() {
             A stronger business.
           </p>
 
-          <a href="/dashboard" className="hero-button">
+          <Link to="/dashboard" className="hero-button">
             Explore Platform <span>→</span>
-          </a>
+          </Link>
         </div>
 
         <div className="hero-decoration">O</div>
@@ -94,6 +96,7 @@ function Home() {
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
             alt="Elegant modern business office"
           />
+
           <div className="image-caption">
             <span>OMNICORE</span>
             <p>Where business meets innovation</p>
@@ -147,6 +150,7 @@ function Home() {
             <span className="section-label">
               EXPLORE OUR PLATFORM
             </span>
+
             <h2>Everything in One Place</h2>
           </div>
 
@@ -154,16 +158,19 @@ function Home() {
         </div>
 
         <div className="home-quick-links">
+
           {features.map((feature, index) => (
-            <a
-              href={feature.link}
+            <Link
+              to={feature.link}
               className="home-feature-card"
               key={feature.title}
             >
+
               <div className="feature-card-top">
                 <div className="feature-icon gold">
                   {feature.icon}
                 </div>
+
                 <span className="feature-number">
                   0{index + 1}
                 </span>
@@ -171,13 +178,17 @@ function Home() {
 
               <div className="feature-card-content">
                 <h3>{feature.title}</h3>
+
                 <p>{feature.description}</p>
+
                 <span className="feature-link">
                   Explore More <span>→</span>
                 </span>
               </div>
-            </a>
+
+            </Link>
           ))}
+
         </div>
 
       </section>
@@ -194,3 +205,4 @@ function Home() {
 }
 
 export default Home;
+

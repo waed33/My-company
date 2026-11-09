@@ -1,4 +1,5 @@
 
+
 import React, { useState } from "react";
 import "../design/login.css";
 
@@ -12,11 +13,15 @@ function Login({ onLogin }) {
     const [emailReadOnly, setEmailReadOnly] = useState(true);
     const [passwordReadOnly, setPasswordReadOnly] = useState(true);
 
+    // Single CEO account (demo credentials)
+    const CEO_EMAIL = "waedbaydoun7@gmail.com";
+    const CEO_PASSWORD = "Waedwaed123";
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setMessage("");
 
-        const cleanEmail = email.trim();
+        const cleanEmail = email.trim().toLowerCase();
 
         if (!cleanEmail || !password) {
             setMessage("Please fill in all fields.");
@@ -30,8 +35,12 @@ function Login({ onLogin }) {
             return;
         }
 
-        if (password.length < 8) {
-            setMessage("Password must be at least 8 characters.");
+        // Check the single CEO account
+        if (
+            cleanEmail !== CEO_EMAIL.toLowerCase() ||
+            password !== CEO_PASSWORD
+        ) {
+            setMessage("Invalid email or password. Please try again.");
             return;
         }
 
@@ -45,7 +54,6 @@ function Login({ onLogin }) {
 
             await onLogin({
                 email: cleanEmail,
-                password,
                 remember
             });
 
@@ -133,6 +141,7 @@ function Login({ onLogin }) {
                     <form onSubmit={handleLogin} autoComplete="off">
 
                         {/* Dummy fields to discourage browser autofill */}
+
                         <input
                             type="text"
                             name="username"
@@ -283,4 +292,3 @@ function Login({ onLogin }) {
 }
 
 export default Login;
-

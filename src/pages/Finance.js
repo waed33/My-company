@@ -147,20 +147,21 @@ function Finance() {
   // Budget Calculations
   const currentYear = new Date().getFullYear();
 
+  // Count ALL expenses, including Pending expenses.
   const yearlyExpenses = transactions
     .filter(
       (t) =>
         t.type === "Expense" &&
-        t.status === "Completed" &&
         Number(t.date.split("-")[0]) === currentYear
     )
     .reduce((sum, t) => sum + Number(t.amount), 0);
 
   const remainingBudget = annualBudget - yearlyExpenses;
 
-  const budgetPercentage = annualBudget > 0
-    ? Math.round((yearlyExpenses / annualBudget) * 100)
-    : 0;
+  const budgetPercentage =
+    annualBudget > 0
+      ? Math.round((yearlyExpenses / annualBudget) * 100)
+      : 0;
 
   // Search and Filter
   const filteredTransactions = transactions.filter((t) => {
@@ -198,12 +199,45 @@ function Finance() {
       !newTransaction.amount ||
       Number(newTransaction.amount) <= 0
     ) {
+      alert("Please enter valid transaction details.");
+      return;
+    }
+
+    const amount = Number(newTransaction.amount);
+    const currentYear = new Date().getFullYear();
+
+    // Calculate all yearly expenses, including Pending.
+    // Exclude the transaction currently being edited.
+    const currentYearExpenses = transactions
+      .filter(
+        (t) =>
+          t.type === "Expense" &&
+          Number(t.date.split("-")[0]) === currentYear &&
+          t.id !== editingId
+      )
+      .reduce((sum, t) => sum + Number(t.amount), 0);
+
+    // Check if this is an expense in the current year.
+    const isCurrentYearExpense =
+      newTransaction.type === "Expense" &&
+      Number(newTransaction.date.split("-")[0]) === currentYear;
+
+    const availableBudget = annualBudget - currentYearExpenses;
+
+    // Prevent expenses greater than the remaining budget.
+    if (isCurrentYearExpense && amount > availableBudget) {
+      alert(
+        `Cannot save this transaction!\n\n` +
+        `Remaining Budget: ${formatMoney(availableBudget)}\n` +
+        `Requested Expense: ${formatMoney(amount)}\n\n` +
+        `Please enter an amount within your remaining budget.`
+      );
       return;
     }
 
     const transactionData = {
       ...newTransaction,
-      amount: Number(newTransaction.amount),
+      amount: amount,
     };
 
     if (editingId !== null) {
@@ -336,47 +370,46 @@ function Finance() {
     <div className="finance-page">
 
       {/* Header */}
-      {/* Header */}
-<div className="finance-header">
+      <div className="finance-header">
 
-  <img
-    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
-    alt="Financial Management"
-  />
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+          alt="Financial Management"
+        />
 
-  <div className="finance-header-overlay">
+        <div className="finance-header-overlay">
 
-    <span className="finance-eyebrow">
-      FINANCIAL MANAGEMENT
-    </span>
+          <span className="finance-eyebrow">
+            FINANCIAL MANAGEMENT
+          </span>
 
-    <h1>Finance Overview</h1>
+          <h1>Finance Overview</h1>
 
-    <p>
-      Monitor your company's financial performance and transactions.
-    </p>
+          <p>
+            Monitor your company's financial performance and transactions.
+          </p>
 
-  </div>
+        </div>
 
-  <button
-    className="add-transaction-btn"
-    onClick={() => {
-      setEditingId(null);
-      setNewTransaction({
-        name: "",
-        category: "Projects",
-        date: getToday(),
-        amount: "",
-        type: "Income",
-        status: "Completed",
-      });
-      setShowModal(true);
-    }}
-  >
-    + Add Transaction
-  </button>
+        <button
+          className="add-transaction-btn"
+          onClick={() => {
+            setEditingId(null);
+            setNewTransaction({
+              name: "",
+              category: "Projects",
+              date: getToday(),
+              amount: "",
+              type: "Income",
+              status: "Completed",
+            });
+            setShowModal(true);
+          }}
+        >
+          + Add Transaction
+        </button>
 
-</div>
+      </div>
 
       {/* Financial Statistics */}
       <div className="finance-stats">

@@ -430,3 +430,46 @@ body {
     }
 }
 
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        height: auto;
+    }
+
+    .left-section {
+        min-height: auto;
+        height: auto;
+        padding: 35px 25px 20px;
+    }
+
+    .hero-content {
+        margin-bottom: 25px;
+    }
+
+    .left-footer {
+        position: static;
+        margin-top: 25px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 30px 20px 20px;
+        min-height: auto;
+        height: auto;
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 420px;
+    }
+
+}
