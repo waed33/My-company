@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "../design/Reports.css";
 
@@ -89,6 +88,7 @@ function Reports() {
   const [filter, setFilter] = useState("All");
   const [message, setMessage] = useState("");
 
+  // SAVE REPORTS
   useEffect(() => {
     localStorage.setItem(
       STORAGE_KEY,
@@ -99,12 +99,14 @@ function Reports() {
   const selectedTemplate =
     templates.find((item) => item.id === template) || templates[0];
 
+  // SELECT TEMPLATE
   const handleTemplate = (item) => {
     setTemplate(item.id);
     setReportType(item.name);
     setMessage("");
   };
 
+  // CHANGE REPORT TYPE
   const handleReportType = (value) => {
     setReportType(value);
 
@@ -117,6 +119,7 @@ function Reports() {
     setMessage("");
   };
 
+  // GENERATE REPORT
   const generateReport = (e) => {
     e.preventDefault();
 
@@ -125,7 +128,10 @@ function Reports() {
       return;
     }
 
-    if (new Date(`${startDate}T00:00:00`) > new Date(`${endDate}T00:00:00`)) {
+    if (
+      new Date(`${startDate}T00:00:00`) >
+      new Date(`${endDate}T00:00:00`)
+    ) {
       setMessage("The start date cannot be after the end date.");
       return;
     }
@@ -156,6 +162,7 @@ function Reports() {
     setMessage("");
   };
 
+  // DELETE REPORT
   const deleteReport = (id) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this report?"
@@ -172,6 +179,7 @@ function Reports() {
     }
   };
 
+  // SEARCH AND FILTER
   const filteredReports = generatedReports.filter((report) => {
     const matchesSearch =
       report.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -184,10 +192,12 @@ function Reports() {
     return matchesSearch && matchesFilter;
   });
 
+  // PRINT REPORT
   const printReport = () => {
     window.print();
   };
 
+  // FORMAT DATE
   const formatDate = (date) => {
     if (!date) return "Not selected";
 
@@ -198,23 +208,45 @@ function Reports() {
     });
   };
 
+  // HEADER BUTTON: SCROLL TO REPORT FORM
+  const scrollToReportBuilder = () => {
+    document.getElementById("report-builder")?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  };
+
   return (
     <div className="reports-page">
 
       {/* HEADER */}
       <header className="reports-header">
-        <div>
+        <div className="reports-header-content">
+
           <div className="reports-breadcrumb">
             MANAGEMENT <span>/</span> REPORT CENTER
           </div>
 
+          <span className="reports-subtitle">
+            BUSINESS MANAGEMENT
+          </span>
+
           <h1>
-            Report Center<span>.</span>
+            REPORT CENTER<span>.</span>
           </h1>
 
           <p>
             Create, customize, and manage your company's business reports.
           </p>
+
+          <button
+            className="generate-header-btn"
+            type="button"
+            onClick={scrollToReportBuilder}
+          >
+            + Generate Report
+          </button>
+
         </div>
 
         <div className="reports-header-right">
@@ -229,6 +261,7 @@ function Reports() {
 
       {/* TOP SUMMARY */}
       <section className="reports-overview-strip">
+
         <div>
           <span className="overview-strip-icon purple">▤</span>
 
@@ -243,10 +276,13 @@ function Reports() {
 
           <div>
             <small>READY REPORTS</small>
+
             <strong>
-              {generatedReports.filter(
-                (report) => report.status === "Ready"
-              ).length}
+              {
+                generatedReports.filter(
+                  (report) => report.status === "Ready"
+                ).length
+              }
             </strong>
           </div>
         </div>
@@ -256,6 +292,7 @@ function Reports() {
 
           <div>
             <small>LAST GENERATED</small>
+
             <strong>
               {generatedReports.length
                 ? generatedReports[0].createdAt
@@ -268,11 +305,14 @@ function Reports() {
           <span></span>
           WORKSPACE ACTIVE
         </div>
+
       </section>
 
       {/* TEMPLATE SELECTION */}
       <section className="reports-content-section">
+
         <div className="reports-section-title">
+
           <div>
             <span className="reports-eyebrow">
               01 / CHOOSE YOUR FORMAT
@@ -286,9 +326,11 @@ function Reports() {
           </div>
 
           <span className="reports-section-index">01</span>
+
         </div>
 
         <div className="report-templates-grid">
+
           {templates.map((item) => (
             <button
               type="button"
@@ -298,9 +340,15 @@ function Reports() {
               }`}
               onClick={() => handleTemplate(item)}
             >
+
               <div className="template-card-top">
-                <span className="template-icon">{item.icon}</span>
-                <span className="template-tag">{item.tag}</span>
+                <span className="template-icon">
+                  {item.icon}
+                </span>
+
+                <span className="template-tag">
+                  {item.tag}
+                </span>
               </div>
 
               <h3>{item.name}</h3>
@@ -308,22 +356,31 @@ function Reports() {
               <p>{item.description}</p>
 
               <div className="template-card-bottom">
+
                 <span>
-                  {template === item.id ? "SELECTED" : "USE TEMPLATE"}
+                  {template === item.id
+                    ? "SELECTED"
+                    : "USE TEMPLATE"}
                 </span>
 
                 <span className="template-arrow">
                   {template === item.id ? "✓" : "↗"}
                 </span>
+
               </div>
+
             </button>
           ))}
+
         </div>
+
       </section>
 
       {/* REPORT BUILDER */}
       <section className="reports-content-section">
+
         <div className="reports-section-title">
+
           <div>
             <span className="reports-eyebrow">
               02 / CUSTOMIZE YOUR REPORT
@@ -337,26 +394,32 @@ function Reports() {
           </div>
 
           <span className="reports-section-index">02</span>
+
         </div>
 
         <div className="report-builder-layout">
 
           <form
+            id="report-builder"
             className="report-builder-form"
             onSubmit={generateReport}
           >
+
             <div className="builder-form-heading">
+
               <div className="builder-heading-icon">✦</div>
 
               <div>
                 <h3>Report Configuration</h3>
                 <p>Define the information you want to include.</p>
               </div>
+
             </div>
 
             <div className="report-form-grid">
 
               <div className="report-form-field full-width">
+
                 <label>REPORT NAME</label>
 
                 <input
@@ -365,14 +428,18 @@ function Reports() {
                   value={reportName}
                   onChange={(e) => setReportName(e.target.value)}
                 />
+
               </div>
 
               <div className="report-form-field">
+
                 <label>REPORT TYPE</label>
 
                 <select
                   value={reportType}
-                  onChange={(e) => handleReportType(e.target.value)}
+                  onChange={(e) =>
+                    handleReportType(e.target.value)
+                  }
                 >
                   {reportTypes.map((type) => (
                     <option key={type} value={type}>
@@ -380,14 +447,18 @@ function Reports() {
                     </option>
                   ))}
                 </select>
+
               </div>
 
               <div className="report-form-field">
+
                 <label>DEPARTMENT</label>
 
                 <select
                   value={department}
-                  onChange={(e) => setDepartment(e.target.value)}
+                  onChange={(e) =>
+                    setDepartment(e.target.value)
+                  }
                 >
                   {departments.map((dept) => (
                     <option key={dept} value={dept}>
@@ -395,29 +466,39 @@ function Reports() {
                     </option>
                   ))}
                 </select>
+
               </div>
 
               <div className="report-form-field">
+
                 <label>START DATE</label>
 
                 <input
                   type="date"
                   value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
+                  onChange={(e) =>
+                    setStartDate(e.target.value)
+                  }
                   required
                 />
+
               </div>
 
               <div className="report-form-field">
+
                 <label>END DATE</label>
 
                 <input
                   type="date"
                   value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
+                  onChange={(e) =>
+                    setEndDate(e.target.value)
+                  }
                   required
                 />
+
               </div>
+
             </div>
 
             {message && (
@@ -427,6 +508,7 @@ function Reports() {
             )}
 
             <div className="builder-form-footer">
+
               <span>
                 <i></i> Your report will be added to the archive.
               </span>
@@ -434,17 +516,21 @@ function Reports() {
               <button type="submit">
                 Generate Report <span>↗</span>
               </button>
+
             </div>
+
           </form>
 
           {/* LIVE CONFIGURATION PREVIEW */}
           <aside className="report-config-preview">
+
             <div className="config-preview-top">
               <span>LIVE PREVIEW</span>
               <span className="preview-status">● DRAFT</span>
             </div>
 
             <div className="config-document">
+
               <div className="document-brand">
                 <span>O</span>
                 <strong>OMNICORE</strong>
@@ -459,6 +545,7 @@ function Reports() {
               <p>{selectedTemplate.description}</p>
 
               <div className="document-details">
+
                 <div>
                   <span>REPORT TYPE</span>
                   <strong>{reportType}</strong>
@@ -478,6 +565,7 @@ function Reports() {
                   <span>TO</span>
                   <strong>{formatDate(endDate)}</strong>
                 </div>
+
               </div>
 
               <div className="document-decoration">
@@ -489,18 +577,24 @@ function Reports() {
               <div className="document-footer">
                 CONFIDENTIAL · INTERNAL USE ONLY
               </div>
+
             </div>
 
             <p className="preview-caption">
               Your report cover updates as you change the configuration.
             </p>
+
           </aside>
+
         </div>
+
       </section>
 
       {/* GENERATED REPORT ARCHIVE */}
       <section className="reports-content-section archive-section">
+
         <div className="reports-section-title">
+
           <div>
             <span className="reports-eyebrow">
               03 / REPORT MANAGEMENT
@@ -514,10 +608,13 @@ function Reports() {
           </div>
 
           <span className="reports-section-index">03</span>
+
         </div>
 
         <div className="report-archive-panel">
+
           <div className="archive-toolbar">
+
             <div className="archive-search">
               <span>⌕</span>
 
@@ -541,10 +638,13 @@ function Reports() {
                 </option>
               ))}
             </select>
+
           </div>
 
           {filteredReports.length === 0 ? (
+
             <div className="reports-empty-state">
+
               <div className="empty-report-icon">▤</div>
 
               <h3>No reports found</h3>
@@ -554,14 +654,20 @@ function Reports() {
                   ? "Your generated reports will appear here. Start by creating your first report."
                   : "Try changing your search or filter."}
               </p>
+
             </div>
+
           ) : (
+
             <div className="report-archive-list">
+
               {filteredReports.map((report) => (
+
                 <div
                   className="archive-report-row"
                   key={report.id}
                 >
+
                   <div className="archive-file-icon">PDF</div>
 
                   <div className="archive-report-info">
@@ -582,6 +688,7 @@ function Reports() {
                   </span>
 
                   <div className="archive-actions">
+
                     <button
                       type="button"
                       title="Preview report"
@@ -598,33 +705,46 @@ function Reports() {
                     >
                       ×
                     </button>
+
                   </div>
+
                 </div>
+
               ))}
+
             </div>
+
           )}
 
           <div className="archive-footer">
+
             <span>
               Showing {filteredReports.length} of {generatedReports.length} reports
             </span>
 
             <span>OMNICORE DOCUMENT WORKSPACE</span>
+
           </div>
+
         </div>
+
       </section>
 
       {/* PREVIEW MODAL */}
       {previewReport && (
+
         <div
           className="report-modal-overlay"
           onClick={() => setPreviewReport(null)}
         >
+
           <div
             className="report-preview-modal"
             onClick={(e) => e.stopPropagation()}
           >
+
             <div className="report-modal-header">
+
               <div>
                 <span>REPORT PREVIEW</span>
                 <h2>{previewReport.name}</h2>
@@ -636,9 +756,11 @@ function Reports() {
               >
                 ×
               </button>
+
             </div>
 
             <div className="report-modal-document">
+
               <div className="modal-document-brand">
                 <span>O</span>
                 <strong>OMNICORE MANAGEMENT</strong>
@@ -658,6 +780,7 @@ function Reports() {
               </p>
 
               <div className="modal-document-grid">
+
                 <div>
                   <small>REPORT TYPE</small>
                   <strong>{previewReport.type}</strong>
@@ -689,9 +812,11 @@ function Reports() {
                     {previewReport.status}
                   </strong>
                 </div>
+
               </div>
 
               <div className="modal-document-note">
+
                 <strong>Report configuration</strong>
 
                 <p>
@@ -708,14 +833,17 @@ function Reports() {
                   Connecting the report to the company's live data and
                   database is a separate step.
                 </p>
+
               </div>
 
               <div className="modal-document-bottom">
                 CONFIDENTIAL · OMNICORE MANAGEMENT
               </div>
+
             </div>
 
             <div className="report-modal-footer">
+
               <button
                 type="button"
                 className="modal-close-btn"
@@ -731,15 +859,21 @@ function Reports() {
               >
                 Print / Save PDF ↗
               </button>
+
             </div>
+
           </div>
+
         </div>
+
       )}
 
+      {/* FOOTER */}
       <footer className="reports-page-footer">
         <span>© 2026 OMNICORE MANAGEMENT</span>
         <span>REPORT CENTER · CONFIDENTIAL</span>
       </footer>
+
     </div>
   );
 }

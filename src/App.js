@@ -1,7 +1,9 @@
 
+
+
+
+
 import React, { useState } from "react";
-
-
 import {
   BrowserRouter,
   Routes,
@@ -20,51 +22,55 @@ import Finance from "./pages/Finance";
 import Performance from "./pages/Performance";
 import Reports from "./pages/Reports";
 
+import { EmployeeProvider } from "./components/EmployeeContext";
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
-    <BrowserRouter>
-      <Routes>
+    <EmployeeProvider>
+      <BrowserRouter>
+        <Routes>
 
-        <Route
-          path="/"
-          element={
-            !isLoggedIn ? (
-              <Login onLogin={() => setIsLoggedIn(true)} />
-            ) : (
-              <Navigate to="/home" replace />
-            )
-          }
-        />
+          <Route
+            path="/"
+            element={
+              !isLoggedIn ? (
+                <Login onLogin={() => setIsLoggedIn(true)} />
+              ) : (
+                <Navigate to="/home" replace />
+              )
+            }
+          />
 
-        {isLoggedIn && (
-          <Route element={<MainLayout />}>
+          {isLoggedIn && (
+            <Route element={<MainLayout />}>
 
-            <Route path="/home" element={<Home />} />
-            <Route path="/dashboard" element={<Dashbord />} />
-            <Route path="/employees" element={<Employees />} />
-            <Route path="/departments" element={<Departments />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/finance" element={<Finance />} />
-            <Route path="/performance" element={<Performance />} />
-            <Route path="/reports" element={<Reports />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/dashboard" element={<Dashbord />} />
+              <Route path="/employees" element={<Employees />} />
+              <Route path="/departments" element={<Departments />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/finance" element={<Finance />} />
+              <Route path="/performance" element={<Performance />} />
+              <Route path="/reports" element={<Reports />} />
 
-          </Route>
-        )}
+            </Route>
+          )}
 
-        <Route
-          path="*"
-          element={
-            <Navigate
-              to={isLoggedIn ? "/home" : "/"}
-              replace
-            />
-          }
-        />
+          <Route
+            path="*"
+            element={
+              <Navigate
+                to={isLoggedIn ? "/home" : "/"}
+                replace
+              />
+            }
+          />
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </EmployeeProvider>
   );
 }
 

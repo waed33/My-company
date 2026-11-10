@@ -1100,3 +1100,143 @@
     padding: 22px;
   }
 }
+/* PROJECTS HEADER */
+
+.projects-topbar {
+  width: 100%;
+  min-height: 270px;
+  padding: 35px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 16, 0.95),
+      rgba(5, 9, 16, 0.45)
+    ),
+   url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1800&q=90")
+    center / cover no-repeat;
+
+  border-radius: 20px;
+  border: 1px solid #c5a45c;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+/* CONTENT */
+
+.projects-topbar > div {
+  position: relative;
+  z-index: 2;
+}
+
+.projects-eyebrow {
+  display: block;
+  color: #f2cf82;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 15px;
+}
+
+.projects-topbar h1 {
+  color: #f2cf82;
+  font-family: Georgia, serif;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 0 0 12px;
+  letter-spacing: 1px;
+}
+
+.projects-topbar h1 span {
+  color: #ffffff;
+}
+
+.projects-topbar p {
+  color: #ffffff;
+  font-size: 15px;
+  margin: 0;
+  line-height: 1.8;
+}
+
+/* CREATE PROJECT BUTTON */
+
+.project-create-btn {
+  position: relative;
+  z-index: 2;
+
+  background: #f2cf82;
+  color: #101827;
+  border: none;
+  border-radius: 10px;
+
+  padding: 13px 25px;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.project-create-btn span {
+  font-size: 19px;
+  margin-right: 5px;
+}
+
+.project-create-btn:hover {
+  background: #ffe3a3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(210, 170, 85, 0.3);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .projects-topbar {
+    min-height: 230px;
+    padding: 25px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .projects-topbar h1 {
+    font-size: 30px;
+  }
+}@media (max-width: 768px) {
+  .featured-project {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .featured-visual {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    height: 180px;
+    min-height: 180px;
+    flex-shrink: 0;
+    transform: none;
+    overflow: visible;
+    visibility: visible;
+    opacity: 1;
+    margin-top: 10px;
+  }
+
+  .featured-orbit,
+  .featured-center,
+  .orbit-dot {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}

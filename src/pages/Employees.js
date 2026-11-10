@@ -1,37 +1,13 @@
 
-
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../design/Employees.css";
 import Navbar from "../components/Navbar";
+import { useEmployees } from "../components/EmployeeContext";
 
 function Employees({ onBack }) {
-  const [employees, setEmployees] = useState(() => {
-    const savedEmployees = localStorage.getItem("omnicore_employees");
 
-    if (savedEmployees) {
-      try {
-        return JSON.parse(savedEmployees);
-      } catch {
-        return [
-          { id: 1, name: "John Smith", email: "john@company.com", department: "IT", position: "IT Manager", status: "Active" },
-          { id: 2, name: "Sarah Wilson", email: "sarah@company.com", department: "HR", position: "HR Manager", status: "Active" },
-          { id: 3, name: "David Brown", email: "david@company.com", department: "Marketing", position: "Marketing Specialist", status: "Active" },
-          { id: 4, name: "Emily Davis", email: "emily@company.com", department: "Finance", position: "Accountant", status: "Inactive" },
-          { id: 5, name: "Michael Lee", email: "michael@company.com", department: "Sales", position: "Sales Executive", status: "Active" },
-          { id: 6, name: "Olivia Taylor", email: "olivia@company.com", department: "IT", position: "Developer", status: "Active" },
-        ];
-      }
-    }
-
-    return [
-      { id: 1, name: "John Smith", email: "john@company.com", department: "IT", position: "IT Manager", status: "Active" },
-      { id: 2, name: "Sarah Wilson", email: "sarah@company.com", department: "HR", position: "HR Manager", status: "Active" },
-      { id: 3, name: "David Brown", email: "david@company.com", department: "Marketing", position: "Marketing Specialist", status: "Active" },
-      { id: 4, name: "Emily Davis", email: "emily@company.com", department: "Finance", position: "Accountant", status: "Inactive" },
-      { id: 5, name: "Michael Lee", email: "michael@company.com", department: "Sales", position: "Sales Executive", status: "Active" },
-      { id: 6, name: "Olivia Taylor", email: "olivia@company.com", department: "IT", position: "Developer", status: "Active" },
-    ];
-  });
+  // Get employees from Context
+  const { employees, setEmployees } = useEmployees();
 
   const [search, setSearch] = useState("");
   const [department, setDepartment] = useState("All");
@@ -47,16 +23,12 @@ function Employees({ onBack }) {
     status: "Active",
   });
 
-  // Save employees whenever the list changes
-  useEffect(() => {
-    localStorage.setItem("omnicore_employees", JSON.stringify(employees));
-  }, [employees]);
-
-  // Get unique departments from employees
+  // Get unique departments
   const departments = [
     ...new Set(employees.map((employee) => employee.department)),
   ];
 
+  // Filter employees
   const filteredEmployees = employees.filter((employee) => {
     const matchesSearch =
       employee.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -71,13 +43,14 @@ function Employees({ onBack }) {
     return matchesSearch && matchesDepartment && matchesStatus;
   });
 
+  // Statistics
   const activeCount = employees.filter(
     (employee) => employee.status === "Active"
   ).length;
 
   const inactiveCount = employees.length - activeCount;
 
-  // Add or update employee
+  // Add or Update Employee
   const handleAddEmployee = (e) => {
     e.preventDefault();
 
@@ -113,7 +86,7 @@ function Employees({ onBack }) {
     resetForm();
   };
 
-  // Open form for editing
+  // Edit Employee
   const handleEditEmployee = (employee) => {
     setNewEmployee({
       name: employee.name,
@@ -127,20 +100,20 @@ function Employees({ onBack }) {
     setShowForm(true);
   };
 
-  // Delete employee
+  // Delete Employee
   const handleDeleteEmployee = (id) => {
-  const confirmDelete = window.confirm(
-    "Are you sure you want to delete this employee?"
-  );
-
-  if (confirmDelete) {
-    setEmployees(
-      employees.filter((employee) => employee.id !== id)
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this employee?"
     );
-  }
-};
 
-  // Reset form
+    if (confirmDelete) {
+      setEmployees(
+        employees.filter((employee) => employee.id !== id)
+      );
+    }
+  };
+
+  // Reset Form
   const resetForm = () => {
     setNewEmployee({
       name: "",
@@ -157,42 +130,43 @@ function Employees({ onBack }) {
   return (
     <div className="employees-page">
 
-    <header className="employees-header">
-  <div className="employees-header-title">
-    <div className="employees-hero-image">
-      <span>👥</span>
-    </div>
+      <header className="employees-header">
+        <div className="employees-header-title">
+          <div className="employees-hero-image">
+            <span>👥</span>
+          </div>
 
-    <div>
-      <h1>Employees Management</h1>
-      <p>Manage and monitor all company employees.</p>
-    </div>
-  </div>
+          <div>
+            <h1>Employees Management</h1>
+            <p>Manage and monitor all company employees.</p>
+          </div>
+        </div>
 
-  <button
-    className="add-employee-btn"
-    onClick={() => {
-      if (showForm) {
-        resetForm();
-      } else {
-        setEditingId(null);
-        setNewEmployee({
-          name: "",
-          email: "",
-          department: "IT",
-          position: "",
-          status: "Active",
-        });
-        setShowForm(true);
-      }
-    }}
-  >
-    + Add Employee
-  </button>
-</header>
+        <button
+          className="add-employee-btn"
+          onClick={() => {
+            if (showForm) {
+              resetForm();
+            } else {
+              setEditingId(null);
+              setNewEmployee({
+                name: "",
+                email: "",
+                department: "IT",
+                position: "",
+                status: "Active",
+              });
+              setShowForm(true);
+            }
+          }}
+        >
+          + Add Employee
+        </button>
+      </header>
 
       {/* Statistics */}
       <div className="employee-stats">
+
         <div className="employee-stat-card">
           <span>Total Employees</span>
           <h2>{employees.length}</h2>
@@ -216,17 +190,21 @@ function Employees({ onBack }) {
           <h2>{departments.length}</h2>
           <div className="employee-stat-icon purple">🏢</div>
         </div>
+
       </div>
 
       {/* Add / Edit Employee Form */}
       {showForm && (
         <div className="employee-form-card">
+
           <h2>
             {editingId !== null ? "Edit Employee" : "Add New Employee"}
           </h2>
 
           <form onSubmit={handleAddEmployee}>
+
             <div className="employee-form-grid">
+
               <input
                 type="text"
                 placeholder="Full Name"
@@ -298,9 +276,11 @@ function Employees({ onBack }) {
                 <option value="Active">Active</option>
                 <option value="Inactive">Inactive</option>
               </select>
+
             </div>
 
             <div className="employee-form-actions">
+
               <button type="submit" className="save-employee-btn">
                 {editingId !== null ? "Update Employee" : "Save Employee"}
               </button>
@@ -312,6 +292,7 @@ function Employees({ onBack }) {
               >
                 Cancel
               </button>
+
             </div>
           </form>
         </div>
@@ -319,6 +300,7 @@ function Employees({ onBack }) {
 
       {/* Employee Table */}
       <div className="employees-table-card">
+
         <div className="employees-table-header">
           <div>
             <h2>All Employees</h2>
@@ -328,6 +310,7 @@ function Employees({ onBack }) {
 
         {/* Search and Filters */}
         <div className="employee-filters">
+
           <input
             type="text"
             placeholder="Search by name or email..."
@@ -340,6 +323,7 @@ function Employees({ onBack }) {
             onChange={(e) => setDepartment(e.target.value)}
           >
             <option value="All">All Departments</option>
+
             {departments.map((dep) => (
               <option key={dep} value={dep}>
                 {dep}
@@ -355,10 +339,13 @@ function Employees({ onBack }) {
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>
+
         </div>
 
         <div className="employees-table-wrapper">
+
           <table className="employees-table">
+
             <thead>
               <tr>
                 <th>Employee</th>
@@ -371,14 +358,19 @@ function Employees({ onBack }) {
             </thead>
 
             <tbody>
+
               {filteredEmployees.map((employee) => (
                 <tr key={employee.id}>
+
                   <td>
                     <div className="employee-name-cell">
+
                       <div className="employee-avatar">
                         {employee.name.charAt(0).toUpperCase()}
                       </div>
+
                       <strong>{employee.name}</strong>
+
                     </div>
                   </td>
 
@@ -399,6 +391,7 @@ function Employees({ onBack }) {
                   </td>
 
                   <td>
+
                     <button
                       type="button"
                       onClick={() => handleEditEmployee(employee)}
@@ -421,6 +414,7 @@ function Employees({ onBack }) {
                     >
                       Delete
                     </button>
+
                   </td>
                 </tr>
               ))}
@@ -432,13 +426,16 @@ function Employees({ onBack }) {
                   </td>
                 </tr>
               )}
+
             </tbody>
           </table>
+
         </div>
 
         <div className="employee-table-footer">
           Showing {filteredEmployees.length} of {employees.length} employees
         </div>
+
       </div>
 
     </div>

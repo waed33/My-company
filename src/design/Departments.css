@@ -582,3 +582,117 @@
     font-size: 19px;
   }
 }
+
+/* DEPARTMENTS HEADER */
+
+
+/* DEPARTMENTS HEADER */
+
+.departments-header {
+  width: 100%;
+  min-height: 280px;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(5, 9, 16, 0.95),
+      rgba(5, 9, 16, 0.45)
+    ),
+    url("https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=90");
+
+  background-size: cover;
+  background-position: center 48%;
+  background-repeat: no-repeat;
+
+  border-radius: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* TITLE */
+
+.departments-title {
+  max-width: 550px;
+  position: relative;
+  z-index: 2;
+}
+
+.departments-eyebrow {
+  color: #f2cf82;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.departments-title h1 {
+  color: #f2cf82;
+  font-size: 42px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  letter-spacing: -1px;
+}
+
+.departments-title p {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 430px;
+  margin: 0;
+}
+
+/* ADD BUTTON */
+
+.add-department-btn {
+  position: relative;
+  z-index: 2;
+  background: #f2cf82;
+  color: #101827;
+  border: none;
+  padding: 15px 23px;
+  border-radius: 11px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transition: 0.3s ease;
+}
+
+.add-department-btn span {
+  font-size: 19px;
+  margin-right: 5px;
+}
+
+.add-department-btn:hover {
+  background: #ffe3a3;
+  transform: translateY(-3px);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .departments-header {
+    min-height: 300px;
+    padding: 25px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .departments-title h1 {
+    font-size: 32px;
+  }
+
+  .add-department-btn {
+    margin-top: 15px;
+  }
+}

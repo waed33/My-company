@@ -142,39 +142,39 @@ function Department() {
     <div className="departments-page">
 
       {/* Page Heading */}
-      <header className="departments-header">
-        <div className="departments-title">
-          <span className="departments-eyebrow">
-            OMNICORE MANAGEMENT
-          </span>
+     <header className="departments-header">
+  <div className="departments-title">
+    <span className="departments-eyebrow">
+      OMNICORE MANAGEMENT
+    </span>
 
-          <h1>Departments</h1>
+    <h1>Departments</h1>
 
-          <p>
-            Manage your teams, monitor performance and organize
-            your company structure.
-          </p>
-        </div>
+    <p>
+      Manage your teams, monitor performance and organize
+      your company structure.
+    </p>
+  </div>
 
-        <button
-          className="add-department-btn"
-          onClick={() => {
-            if (showForm) {
-              resetForm();
-            } else {
-              setEditingId(null);
-              setNewDepartment({
-                name: "",
-                manager: "",
-                employees: "",
-              });
-              setShowForm(true);
-            }
-          }}
-        >
-          <span>＋</span> Add Department
-        </button>
-      </header>
+  <button
+    className="add-department-btn"
+    onClick={() => {
+      if (showForm) {
+        resetForm();
+      } else {
+        setEditingId(null);
+        setNewDepartment({
+          name: "",
+          manager: "",
+          employees: "",
+        });
+        setShowForm(true);
+      }
+    }}
+  >
+    <span>＋</span> Add Department
+  </button>
+</header>
 {/* Departments Hero Image */}
 <div className="departments-hero-banner">
  <div className="departments-hero-banner">
