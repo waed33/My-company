@@ -1,70 +1,162 @@
-# Getting Started with Create React App
+# Omnicore Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+Omnicore Management is a web-based company management system developed using React.js. It provides a centralized dashboard that helps administrators manage company operations and monitor different business activities.
 
-In the project directory, you can run:
+## Main Features
 
-### `npm start`
+### 1. Home
+- Main welcome page.
+- Navigation to the system sections.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Dashboard
+- Displays company statistics.
+- Shows total employees, revenue, expenses, and net profit.
+- Displays active projects and pending tasks.
+- Provides an overview of company performance.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 3. Employees Management
+- Add new employees.
+- Edit employee information.
+- Delete employees.
+- Search and filter employees.
+- Manage employee departments and status.
 
-### `npm test`
+### 4. Departments Management
+- View company departments.
+- Add, edit, and delete departments.
+- Track department information and performance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 5. Projects Management
+- Create and manage projects.
+- Track project progress.
+- Monitor budgets and deadlines.
+- View project details and status.
 
-### `npm run build`
+### 6. Finance Management
+- Manage income and expenses.
+- Track financial transactions.
+- View revenue, expenses, and net profit.
+- Monitor the company budget.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 7. Performance
+- Monitor employee performance.
+- Review performance scores.
+- View department performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 8. Reports
+- Generate company reports.
+- View employee, department, project, and financial reports.
+- Search and filter reports.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies Used
 
-### `npm run eject`
+- React.js
+- JavaScript
+- HTML5
+- CSS3
+- React Router
+- Create React App
+- GitHub Pages
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Live Website
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+https://waed33.github.io/My-company
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Developer
 
-## Learn More
+Omnicore Management System
+## Setup Instructions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Follow these steps to set up and run the Omnicore Management System on your computer.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Prerequisites
+Before starting, make sure you have installed:
+- Node.js
+- npm (Node Package Manager)
+- Visual Studio Code
+- Git (if you want to clone the project)
 
-### Code Splitting
+### Step 1: Download the Project
+Clone the repository using:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+git clone https://github.com/waed33/My-company.git
+```
 
-### Analyzing the Bundle Size
+Or download the project as a ZIP file and extract it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Step 2: Open the Project
+Open Visual Studio Code, select **File → Open Folder**, and choose the project folder containing `package.json`.
 
-### Making a Progressive Web App
+### Step 3: Install Dependencies
+Open the VS Code terminal and run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+This command installs all required project dependencies.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Step 4: Run the Application
+Start the development server:
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+npm start
+
+
+The application will open in your browser at:
+
+http://localhost:3000
+
+### Step 5: Build the Application
+To create an optimized production version, run:
+
+
+npm run build
+
+
+The production files will be generated inside the `build` folder.
+
+### Step 6: Deploy to GitHub Pages
+To publish the application, run:
+
+
+npm run deploy
+
+
+The application will be deployed to:
+
+https://waed33.github.io/My-company
+
+
+## Screenshots
+
+### Home Page
+![Home Page](./src/screenshots/home.png)
+
+### Dashboard
+![Dashboard](./src/screenshots/Dashbord.png)
+
+### Employees
+![Employees](./src/screenshots/Employee.png)
+
+### Departments
+![Departments](./src/screenshots/Department.png)
+
+### Projects
+![Projects](./src/screenshots/Project.png)
+
+### Finance
+![Finance](./src/screenshots/finance.png)
+
+### Performance
+![Performance](./src/screenshots/Performance.png)
+
+### Reports
+![Reports](./src/screenshots/Report.png)
+
+### Login
+![Login](./src/screenshots/Login.png)

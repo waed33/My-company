@@ -29,7 +29,7 @@ function App() {
 
   return (
     <EmployeeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/My-company">
         <Routes>
 
           <Route

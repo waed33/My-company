@@ -596,7 +596,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 25px;
-
+ border: 1px solid #c5a45c;
   background:
     linear-gradient(
       90deg,

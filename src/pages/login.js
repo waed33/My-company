@@ -78,7 +78,7 @@ function Login({ onLogin }) {
                 <div className="hero-content">
 
                     <span className="welcome-tag">
-                        MANAGEMENT SYSTEM
+                       OMNICORE MANAGEMENT SYSTEM
                     </span>
 
                     <h1>
